@@ -54,6 +54,8 @@ app.use((req, res, next) => {
 app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
 app.use('/tarjetas', require('./routes/tarjetas'));
+app.use('/chofer', require('./routes/chofer'));
+app.use('/bus', require('./routes/bus'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));

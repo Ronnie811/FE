@@ -1,0 +1,37 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each bus}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    
+                        <h3 class="card-nombreCoperativa text-uppercase">
+                            {{nombreCoperativa}}
+                        </h3>
+                    
+                    <p class="m-2">{{marca}}</p>
+                    <p class="m-2">{{placa}}</p>
+                    <p class="m-2">{{color}}</p>
+                    <p class="m-2">{{capacidad}}</p>
+									 
+							
+                    
+                    <a class="btn btn-danger" href="/bus/delete/{{id}}">
+                        Delete bus
+                    </a>
+                    <a class="btn btn-secondary" href="/bus/edit/{{id}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not bus saved yet.</p>
+                <a href="/bus/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each chofer}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    
+                        <h3 class="card-nombre text-uppercase">
+                            {{nombre}}
+                        </h3>
+                    
+                    <p class="m-2">{{apellido}}</p>
+                    <p class="m-2">{{telefono}}</p>
+                    <p class="m-2">{{cedula}}</p>
+                    <p class="m-2">{{email}}</p>
+									 
+							
+                    
+                    <a class="btn btn-danger" href="/chofer/delete/{{id}}">
+                        Delete chofer
+                    </a>
+                    <a class="btn btn-secondary" href="/chofer/edit/{{id}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not chofer saved yet.</p>
+                <a href="/chofer/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,34 @@
+						   
+					 
+<div class="col-md-4 mx-auto">
+
+    <div class="card">
+        <div class="card-body">
+            <form action="/bus/edit/{{bus.id}}" method="POST">
+                <div class="form-group">
+                    <input type="text" name="nombreCoperativa" class="form-control" placeholder="nombreCoperativa" value="{{bus.nombreCoperativa}}" autofocus>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="marca" class="form-control" placeholder="marca" value="{{bus.marca}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="placa" class="form-control" placeholder="placa" value="{{bus.placa}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="color" class="form-control" placeholder="color" value="{{bus.color}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="capacidad" class="form-control" placeholder="capacidad" value="{{bus.capacidad}}">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-block">
+                        Save
+                    </button>
+							  
+						   
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
