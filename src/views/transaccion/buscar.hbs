@@ -1,0 +1,53 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each transaccion}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    
+                        <h3 class="card-usuarioTransaccion text-uppercase">
+                            {{usuarioTransaccion}}
+                        </h3>
+                    
+                    <p class="m-2">{{busTransaccion}}</p>
+                    <p class="m-2">{{tarjetaTransaccion}}</p>
+									 
+							
+                    <p class="m-2">
+                        {{valor}}
+                    </p>
+                    <a class="btn btn-danger" href="/transaccion/delete/{{id}}">
+                        Delete transaccion
+                    </a>
+                    <a class="btn btn-secondary" href="/transaccion/edit/{{id}}">
+                        Edit
+                    </a>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not transaccion saved yet.</p>
+                <a href="/transaccion/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <form action="/transaccion/buscar/{{tarjetas.nombreTarjeta}}" method="POST">
+            <select class="form-control" name="tarjetaTransaccion">
+                            {{#each tarjetas}}
+                                <option value="{{this.nombreTarjeta}}" >{{this.nombreTarjeta}}</option>
+                            {{/each}}
+                        </select> 
+        </form>
+        
+                    <a class="btn btn-secondary" href="/transaccion/buscar/{{this.nombreTarjeta}}">
+                        Buscar
+                    </a>
+             
+</div>

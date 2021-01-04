@@ -27,9 +27,11 @@ CREATE TABLE tarjetas (
     descripcion TEXT,
     user_id INT(11),
     bus_id INT(11),
+    calidad_id INT(11),
     fecha timestamp NOT NULL DEFAULT current_timestamp,
-    CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES usuarios(id)
-    CONSTRAINT fk_bus FOREIGN KEY(bus_id) REFERENCES bus(id)
+    CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES usuarios(id),
+    CONSTRAINT fk_bus FOREIGN KEY(bus_id) REFERENCES bus(id),
+    CONSTRAINT fk_calidad FOREIGN KEY(calidad_id) REFERENCES calidad(id),
 );
 
 ALTER TABLE tarjetas
@@ -41,9 +43,18 @@ ALTER TABLE tarjetas
 ALTER TABLE tarjetas
 ADD bus_id INT(11);
 
+ALTER TABLE tarjetas MODIFY valor INT(11);
+
 ALTER TABLE tarjetas
 ADD CONSTRAINT fk_bus
 FOREIGN KEY (bus_id) REFERENCES bus(id);
+
+ALTER TABLE tarjetas
+ADD calidad_id INT(11);
+
+ALTER TABLE tarjetas
+ADD CONSTRAINT fk_calidad
+FOREIGN KEY (calidad_id) REFERENCES calidad(id);
 
 
   CREATE TABLE bus (
@@ -90,4 +101,45 @@ ADD user_id INT(11);
 ADD CONSTRAINT fk_user2
 FOREIGN KEY (user_id) REFERENCES usuarios(id);
 
+CREATE TABLE tarjeta_bus (
+  id INT(11) NOT NULL,
+  tarejeta_id INT(11),
+  bus_id INT(11),
+  CONSTRAINT fk_bus1 FOREIGN KEY(bus_id) REFERENCES bus(id),
+  CONSTRAINT fk_tarjeta1 FOREIGN KEY(tarejeta_id) REFERENCES tarjetas(id)
+);
+
+ALTER TABLE tarjeta_bus
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE tarjeta_bus
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+CREATE TABLE transaccion (
+  id INT(11) NOT NULL,
+  busTransaccion VARCHAR(16) NOT NULL,
+  tarjetaTransaccion VARCHAR(16) NOT NULL,
+  valor INT(11)
+);
+
+ALTER TABLE transaccion
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE transaccion
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+ALTER TABLE transaccion
+ADD tarjetaTransaccion VARCHAR(16) NOT NULL;
+
 DESCRIBE tarjetas;
+
+CREATE TABLE calidad (
+  id INT(11) NOT NULL,
+  descripcion VARCHAR(16) NOT NULL
+);
+
+ALTER TABLE calidad
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE calidad
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;

@@ -4,16 +4,18 @@ const router = express.Router();
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/add', isLoggedIn, (req, res) => {
-    res.render('tarjetas/add');
+router.get('/add', isLoggedIn, async (req, res) => {
+    const calidad = await pool.query('SELECT * FROM calidad');
+    res.render('tarjetas/add',{calidad});
 });
 
 router.post('/add', isLoggedIn, async (req, res)=>{
-    const {nombreTarjeta, valor, descripcion} = req.body;
+    const {nombreTarjeta, valor, descripcion,calidad_id} = req.body;
     const newTarjeta = {
         nombreTarjeta,
         valor,
         descripcion,
+        calidad_id,
         user_id: req.user.id
     };
     await pool.query('INSERT INTO tarjetas set ?', [newTarjeta]);
@@ -23,7 +25,8 @@ router.post('/add', isLoggedIn, async (req, res)=>{
 
 router.get('/', isLoggedIn,  async (req, res)=>{
     const tarjetas = await pool.query('SELECT * FROM tarjetas WHERE user_id = ?',[req.user.id]);
-    res.render('tarjetas/list', {tarjetas});
+    const calidad = await pool.query('SELECT * FROM calidad');
+    res.render('tarjetas/list', {tarjetas, calidad});
 });
 
 router.get('/delete/:id', isLoggedIn,async (req, res) => {

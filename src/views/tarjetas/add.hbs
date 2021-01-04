@@ -6,19 +6,27 @@
                 <div class="card-body">
                     <form action="/tarjetas/add" method="POST">
                         <div class="form-group">
-                            <input type="text" name="nombreTarjeta" class="form-control" placeholder="nombreTarjeta" autofocus>
+                            <input type="text" name="nombreTarjeta" maxlength="48" class="form-control" placeholder="nombreTarjeta" autofocus>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="valor" class="form-control" placeholder="valor">
+                            <input type="text" name="valor" maxlength="10" class="form-control" placeholder="valor">
                         </div>
                         <div class="form-group">
-                            <textarea name="descripcion" rows="2" class="form-control" placeholder="descripcion"></textarea>
+                            <textarea name="descripcion" rows="2" maxlength="128"class="form-control" placeholder="descripcion"></textarea>
                         </div>
+                        <select class="form-control" name="calidad_id">
+                            {{#each calidad}}
+                                <option value="{{this.id}}" >{{this.descripcion}}</option>
+                            {{/each}}
+                        </select>  
+
                         <div class="form-group">
                             <button class="btn btn-success btn-block">
                                 Save
                             </button>
                         </div>
+
+                        
                     </form>
                 </div>
             </div>

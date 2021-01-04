@@ -56,9 +56,12 @@ app.use(require('./routes/authentication'));
 app.use('/tarjetas', require('./routes/tarjetas'));
 app.use('/chofer', require('./routes/chofer'));
 app.use('/bus', require('./routes/bus'));
+app.use('/transaccion', require('./routes/transaccion'));
+app.use('/reportes', require('./routes/reportes'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Starting
 app.listen(app.get('port'), () => {

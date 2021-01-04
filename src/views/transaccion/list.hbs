@@ -1,0 +1,106 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each transaccion}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    
+                        <h3 class="card-usuarioTransaccion text-uppercase">
+                            {{usuarioTransaccion}}
+                        </h3>
+                    
+                    <p class="m-2">{{busTransaccion}}</p>
+                    <p class="m-2">{{tarjetaTransaccion}}</p>
+									 
+							
+                    <p class="m-2">
+                        {{valor}}
+                    </p>
+                    <a class="btn btn-danger" href="/transaccion/delete/{{id}}">
+                        Delete transaccion
+                    </a>
+                    <a class="btn btn-secondary" href="/transaccion/edit/{{id}}">
+                        Edit
+                    </a>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not transaccion saved yet.</p>
+                <a href="/transaccion/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    
+            <select class="form-control" name="tarjetaTransaccion">
+                            {{#each tarjetas}}
+                                <option value="{{this.nombreTarjeta}}" >{{this.nombreTarjeta}}</option>
+                                
+                            {{/each}}
+
+                            
+                        </select> 
+
+                        <div class="card-body">
+                    
+                </div>
+                        
+
+                    <div class="container mt-5">
+                        <h1>Buscador</h1>
+                        <input type="text" id="formulario" class="form-control my-2">
+                        <button class="btn btn-info mb-2" id="boton">Buscar</button>
+                        <div id="elementoBoton"></div>
+                        <ul id='resultado'>
+
+                        </ul>
+
+                    </div>
+                    <script>
+                        
+                        const productos = [
+                            {busTransaccion: 'QATAR', tarjetaTransaccion: 'visa', valor: 1},
+                            {busTransaccion: 'QATAR', tarjetaTransaccion: 'visa',  valor: 1},
+                            {busTransaccion: 'QATAR',  tarjetaTransaccion: 'visa', valor: 2},
+                            {busTransaccion: 'Guadalajara',  tarjetaTransaccion: 'Mastercard', valor: 3}
+                        ]
+
+                        const formulario = document.querySelector('#formulario');
+                        //const elementoBoton = document.querySelector('#elementoBoton');
+                        //elementoBoton.innerHTML = `<button class="btn btn-info mb-2" id="boton" href="/transaccion/buscar/${formulario.value.toLowerCase()}>Buscar11</button>`;
+                        const boton = document.querySelector('#boton');
+                        const resultado = document.querySelector('#resultado');
+
+                        const filtrar = ()=>{
+                            resultado.innerHTML = '';
+                            const texto = formulario.value.toLowerCase();
+                            for(let producto of productos){
+                                let nombre = producto.busTransaccion.toLowerCase();
+                                if(nombre.indexOf(texto) !== -1){
+                                    resultado.innerHTML += `
+                                        <li>${producto.busTransaccion} - ${producto.busTransaccion} - valor: ${producto.valor}</li>
+                                    `
+                                    
+                                }
+                            }
+                            if(resultado.innerHTML ===''){
+                                resultado.innerHTML += `
+                                    <li>Producto no encontrado..</li>
+                                `
+                            }
+                        }
+
+                        boton.addEventListener('click',filtrar);
+                    </script>
+        
+        
+                    
+        
+</div>

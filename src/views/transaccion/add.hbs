@@ -1,0 +1,32 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+
+            <div class="card">
+                <div class="card-body">
+                    <form action="/transaccion/add" method="POST">
+                        <select class="form-control" name="busTransaccion">
+                            {{#each bus}}
+                                <option value="{{this.nombreCoperativa}}" >{{this.nombreCoperativa}}</option>
+                            {{/each}}
+                        </select>    
+                        <select class="form-control" name="tarjetaTransaccion">
+                            {{#each tarjetas}}
+                                <option value="{{this.nombreTarjeta}}" >{{this.nombreTarjeta}}</option>
+                            {{/each}}
+                        </select>   
+                        <div class="form-group">
+                            <input type="number" min="1" max="5" name="valor" maxlength="10" class="form-control" placeholder="valor">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
