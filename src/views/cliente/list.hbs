@@ -1,0 +1,38 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each cliente}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    
+                        <h3 class="card-nombre text-uppercase">
+                            {{nombre}}
+                        </h3>
+                    
+                    <p class="m-2">{{apellido}}</p>
+                    <p class="m-2">{{telefono}}</p>
+                    <p class="m-2">{{cedula}}</p>
+                    <p class="m-2">{{email}}</p>
+                    <p class="m-2">{{direccion}}</p>
+									 
+							
+                    
+                    <a class="btn btn-danger" href="/cliente/delete/{{id}}">
+                        Delete cliente
+                    </a>
+                    <a class="btn btn-secondary" href="/cliente/edit/{{id}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not cliente saved yet.</p>
+                <a href="/cliente/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

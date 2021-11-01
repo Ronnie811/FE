@@ -59,6 +59,8 @@ app.use('/bus', require('./routes/bus'));
 app.use('/transaccion', require('./routes/transaccion'));
 app.use('/reportes', require('./routes/reportes'));
 app.use('/comparativas', require('./routes/comparativas'));
+app.use('/cliente', require('./routes/cliente'));
+app.use('/proveedor', require('./routes/proveedor'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));

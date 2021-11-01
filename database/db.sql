@@ -143,3 +143,49 @@ ALTER TABLE calidad
 
 ALTER TABLE calidad
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+  CREATE TABLE cliente (
+  id INT(11) NOT NULL,
+  nombre VARCHAR(32) NOT NULL,
+  apellido VARCHAR(60) NOT NULL,
+  telefono VARCHAR(16) NOT NULL,
+  cedula VARCHAR(50) NOT NULL,
+  email VARCHAR(16) NOT NULL,
+  direccion VARCHAR(64) NOT NULL
+);
+
+ALTER TABLE cliente
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE cliente
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+  ALTER TABLE cliente
+ADD user_id INT(11);
+
+  ALTER TABLE cliente
+ADD CONSTRAINT fk_user3
+FOREIGN KEY (user_id) REFERENCES usuarios(id);
+
+CREATE TABLE proveedor (
+  id INT(11) NOT NULL,
+  nombre VARCHAR(32) NOT NULL,
+  apellido VARCHAR(60) NOT NULL,
+  telefono VARCHAR(16) NOT NULL,
+  cedula VARCHAR(50) NOT NULL,
+  email VARCHAR(16) NOT NULL,
+  direccion VARCHAR(64) NOT NULL
+);
+
+ALTER TABLE proveedor
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE proveedor
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+  ALTER TABLE proveedor
+ADD user_id INT(11);
+
+  ALTER TABLE proveedor
+ADD CONSTRAINT fk_user4
+FOREIGN KEY (user_id) REFERENCES usuarios(id);
