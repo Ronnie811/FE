@@ -189,3 +189,26 @@ ADD user_id INT(11);
   ALTER TABLE proveedor
 ADD CONSTRAINT fk_user4
 FOREIGN KEY (user_id) REFERENCES usuarios(id);
+
+CREATE TABLE producto (
+  idproducto INT(11) NOT NULL,
+  nombre VARCHAR(32) NOT NULL,
+  tipoproducto VARCHAR(10) NOT NULL,
+  Iva VARCHAR(20) NOT NULL,
+  precio FLOAT(6,2) NOT NULL,
+  Stock INT(15) NOT NULL,
+  Detalle VARCHAR(30) NULL
+);
+
+ALTER TABLE producto
+  ADD PRIMARY KEY (idproducto);
+
+ALTER TABLE producto
+  MODIFY idproducto INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+  ALTER TABLE producto
+ADD user_id INT(11);
+
+  ALTER TABLE producto
+ADD CONSTRAINT fk_user4
+FOREIGN KEY (user_id) REFERENCES usuarios(id);

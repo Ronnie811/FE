@@ -61,6 +61,7 @@ app.use('/reportes', require('./routes/reportes'));
 app.use('/comparativas', require('./routes/comparativas'));
 app.use('/cliente', require('./routes/cliente'));
 app.use('/proveedor', require('./routes/proveedor'));
+app.use('/producto', require('./routes/producto'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));
