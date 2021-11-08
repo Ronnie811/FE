@@ -62,6 +62,8 @@ app.use('/comparativas', require('./routes/comparativas'));
 app.use('/cliente', require('./routes/cliente'));
 app.use('/proveedor', require('./routes/proveedor'));
 app.use('/producto', require('./routes/producto'));
+app.use('/notacredito', require('./routes/notacredito'));
+
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));

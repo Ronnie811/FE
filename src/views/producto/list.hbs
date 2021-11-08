@@ -1,0 +1,51 @@
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Producto</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Productos Registrados</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-10 d-flex justify-content-end">
+    <a  href="/producto/add" type="button" class="btn btn-info align-self-center">Ingresar producto</a>
+  </div>
+</div>
+
+<div class="container p-4">
+        <table class="table table-bordered" style="background-color: white;">
+            <tr>
+            <th scope="col">Codigo Producto</th>
+            <th scope="col">Nombre Producto</th>
+            <th scope="col">Tipo de Producto</th>
+            <th scope="col">Porcentaje Iva</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Detalle</th>
+            <th scope="col" class="text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each producto}}
+            <tr>
+            <th scope="producto">{{this.idproducto}}</th>
+            <td>{{this.nombre}}</td>
+            <td>{{this.tipoproducto}}</td>
+            <td>{{this.Iva}}</td>
+            <td>{{this.precio}}</td>
+            <td>{{this.Stock}}</td>
+            <td>{{this.Detalle}}</td>
+            <td class="text-end">
+                 <a class="btn btn-danger" href="/producto/delete/{{idproducto}}">
+                        Eliminar
+                    </a>
+                    <a class="btn btn-secondary" href="/producto/edit/{{idproducto}}">
+                        Editar
+                    </a>
+            </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+        </table>
+</div>

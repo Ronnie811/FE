@@ -197,7 +197,7 @@ CREATE TABLE producto (
   Iva VARCHAR(20) NOT NULL,
   precio FLOAT(6,2) NOT NULL,
   Stock INT(15) NOT NULL,
-  Detalle VARCHAR(30) NULL
+  Detalle VARCHAR(75) NULL
 );
 
 ALTER TABLE producto
