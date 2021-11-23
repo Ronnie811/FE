@@ -212,3 +212,59 @@ ADD user_id INT(11);
   ALTER TABLE producto
 ADD CONSTRAINT fk_user4
 FOREIGN KEY (user_id) REFERENCES usuarios(id);
+
+CREATE TABLE notacredito (
+  idnotacredito int(11) NOT NULL,
+  fecha date NOT NULL,
+  numeroregistro varchar(25) NOT NULL,
+  nombrecliente varchar(50) NOT NULL,
+  cedula varchar(15) NOT NULL,
+  telefono varchar(10) NOT NULL,
+  correo varchar(30) NOT NULL,
+  direccion varchar(50) NOT NULL,
+  codigo int(11) NOT NULL,
+  nombreproducto varchar(25) NOT NULL,
+  descrpcion varchar(25) NOT NULL,
+  precio float NOT NULL,
+  cantidad int(11) NOT NULL,
+  subtotal float NOT NULL,
+  iva12 float NOT NULL,
+  noobjetoiva int(11) NOT NULL,
+  descuento float NOT NULL,
+  ice float NOT NULL,
+  total float NOT NULL
+) 
+
+ALTER TABLE notacredito
+  ADD PRIMARY KEY (idnotacredito);
+
+ALTER TABLE notacredito
+  MODIFY idnotacredito int(11) NOT NULL AUTO_INCREMENT = 2;
+
+  CREATE TABLE configuracion (
+  idconf INT(11) NOT NULL,
+  ruc VARCHAR(32) NOT NULL,
+  razonsocial VARCHAR(50) NOT NULL,
+  nombrecomercial VARCHAR(50)  NULL,
+  direccion VARCHAR(75) NOT NULL,
+  codigoestabl VARCHAR(15) NOT NULL,
+  contabilidad VARCHAR(2)  NOT NULL,
+  contribuyenteMicro VARCHAR(2) NOT NULL,
+  numeroresolucion VARCHAR(20)  NOT NULL,
+  tiempoespera int(11) NOT NULL,
+  ambiente VARCHAR(10) NOT NULL,
+  token VARCHAR(75) NOT NULL
+);
+
+ALTER TABLE configuracion
+  ADD PRIMARY KEY (idconf);
+
+ALTER TABLE configuracion
+  MODIFY idconf INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+  ALTER TABLE configuracion
+ADD user_id INT(11);
+
+  ALTER TABLE configuracion
+ADD CONSTRAINT fk_user4
+FOREIGN KEY (user_id) REFERENCES usuarios(id);

@@ -1,0 +1,143 @@
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Configuración</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Datos del Emisor</li>
+  </ol>
+</nav>
+<div class="container p-4">
+    <div class="row">
+        <div class="col-12">
+             <label for="">Datos Generales </label>
+            <div class="row">
+              <div class="col-4">
+               <form  action="/configuracion/add" method="POST">
+                <div class="form-group">
+                    <label for="">RUC: </label>
+                    <input name="ruc" type="text" class="form-control">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row"> 
+                <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Nombres Apellidos-Razón Social</label>
+                    <input name="razonsocial" type="text" class="form-control" >
+                   </div>
+                </div>
+                 <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Nombre Comercial</label>
+                    <input name="nombrecomercial" type="text" class="form-control" >
+                   </div> 
+                 </div>
+            </div>
+        </div>
+                <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Dirección Matriz: </label>
+                    <input name="direccion" type="text" class="form-control" >
+                   </div>
+                     </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Codigo del establecimiento: </label>
+                    <input name="codigoestabl" type="text" class="form-control" >
+                   </div>
+                     </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label>Obligado a llevar Contabilidad: </label>&nbsp;&nbsp;
+                        <select name="contabilidad">
+                        <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                   </div>
+                     </div>
+                    </div>
+                </div>
+                 <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label>Contribuyente Régimen de microempresas: </label>&nbsp;&nbsp;
+                        <select name="contribuyenteMicro">
+                        <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                   </div>
+                     </div>
+                    </div>
+                </div><br>
+                <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Agente de retención Nro de Resolución: </label>
+                    <input name="numeroresolucion" type="text" class="form-control" >
+                   </div>
+                     </div>
+                    </div>
+                </div><br>
+                <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Tiempo máximo de espera para respuesta de autorización: </label>
+                    <input name="tiempoespera" type="number" value="1"  class="form-control" ><label>Segundos</label>
+                   </div>
+                     </div>
+                    </div>
+                </div><br>
+                <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label>Tipo de Ambiente: </label>&nbsp;&nbsp;
+                        <select name="ambiente">
+                        <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
+                        <option value="Produccion">Produccion</option>
+                        <option value="Pruebas">Pruebas</option>
+                    </select>
+                   </div>
+                     </div>
+                    </div>
+                </div><br>
+                 <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label>Token para firmar: </label>&nbsp;&nbsp;
+                        <select name="token">
+                        <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
+                        <option value="BCE-ikey2032">BCE-ikey2032</option>
+                        <option value="BCE-Aladdin e token Pro">BCE-Aladdin e token Pro</option>
+                        <option value="SD-ePass3003 auto">SD-ePass3003 auto</option>
+                        <option value="SD-BioPass3000">SD-BioPass3000</option>
+                        <option value="KEY4-Consejo Judicatura">KEY4-Consejo Judicatura</option>
+                    </select>
+                   </div>
+                     </div>
+                    </div>
+                </div><br>
+                <div class="container p-4">
+                    <button class="btn btn-success btn-block">
+                            Guardar
+                    </button>
+                </div>
+     </form>
+    </div>
+</div>

@@ -63,6 +63,8 @@ app.use('/cliente', require('./routes/cliente'));
 app.use('/proveedor', require('./routes/proveedor'));
 app.use('/producto', require('./routes/producto'));
 app.use('/notacredito', require('./routes/notacredito'));
+app.use('/factura' , require ('./routes/factura'));
+app.use('/configuracion' , require ('./routes/configuracion'));
 
 
 // Public

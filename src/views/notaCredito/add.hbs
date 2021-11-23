@@ -31,7 +31,7 @@
       </div>
       <br><br>
 
-      <form class="row g-3" method="post" action="/notacredito/add/{{cliente.informacion}}">
+      <form class="row g-3" method="post" action="/notacredito/buscar/{{cliente.cedula}}">
           <div class="col-auto">
             <label class="visually-hidden">Ingrese el número de cédula: </label>
           </div>
@@ -65,7 +65,17 @@
               <label>Dirección:</label>
               <input type="text" class="form-control"  aria-label="id" value="{{this.direccion}}">
             </div>
-      </div><br> 
+      
+      <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Factura: </label>
+                    <input name="numerofactura" type="text" class="form-control" >
+                   </div>
+                     </div>
+                    </div>
+                </div>
       <div class="row">
         <div class="col-4">
         <font size=4,5>Productos/Servicios</font>
