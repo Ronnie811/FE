@@ -1,3 +1,4 @@
+
 <div class="container p-4">
     <div class="row">
         {{#each cliente}}
@@ -23,6 +24,8 @@
                     <a class="btn btn-secondary" href="/cliente/edit/{{id}}">
                         Edit
                     </a>
+                    
+
                 </div>
             </div>
         </div>
@@ -35,4 +38,12 @@
         </div>
         {{/each}}
     </div>
+    <section id ="search" class="search-wrap">
+        <h1>Buscar un cliente</h1>
+        <form action="/cliente/search" class="search-form">
+            <i class="fas fa-search"></i>
+            <input type="search" name="term" placeholder="Nombre">
+            <input type="submit" value="Search">
+        </form>
+    </section>
 </div>

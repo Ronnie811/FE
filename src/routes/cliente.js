@@ -58,4 +58,15 @@ router.post('/edit/:id', isLoggedIn, async (req, res) => {
     req.flash('success', 'cliente Updated Successfully');
     res.redirect('/cliente');
 });
+
+// Search for clientes
+router.get('/search', async (req, res) => {
+    let { term } = req.query;
+    console.log(term);
+    // Make lowercase
+    term = term.toLowerCase();
+    const cliente = await pool.query('SELECT * FROM cliente WHERE nombre = ?',[term]);
+    res.render('cliente/list', {cliente});
+    
+  });
 module.exports = router;

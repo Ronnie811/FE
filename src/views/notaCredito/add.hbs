@@ -4,7 +4,174 @@
     <li class="breadcrumb-item active" aria-current="page">Nota de Crédito</li>
   </ol>
 </nav>
+<section id ="search" class="search-wrap">
+  
+<div class="container mt-5">
+                        <h1>Buscador</h1>
+                        <input type="text" id="formulario" class="form-control my-2">
+                        <button class="btn btn-info mb-2" id="boton">Buscar</button>
+                        <div id="elementoBoton"></div>
+                        <ul id='resultado'>
 
+                        </ul>
+
+                    </div>
+                    <script>
+                        
+                        const productos = [
+                            {busTransaccion: 'QATAR', tarjetaTransaccion: 'visa', valor: 1},
+                            {busTransaccion: 'QATAR', tarjetaTransaccion: 'visa',  valor: 1},
+                            {busTransaccion: 'QATAR',  tarjetaTransaccion: 'visa', valor: 2},
+                            {busTransaccion: 'Guadalajara',  tarjetaTransaccion: 'Mastercard', valor: 3}
+                        ]
+
+                        const formulario = document.querySelector('#formulario');
+                        //const elementoBoton = document.querySelector('#elementoBoton');
+                        //elementoBoton.innerHTML = `<button class="btn btn-info mb-2" id="boton" href="/transaccion/buscar/${formulario.value.toLowerCase()}>Buscar11</button>`;
+                        const boton = document.querySelector('#boton');
+                        const resultado = document.querySelector('#resultado');
+                        console.log(productos);
+                        const filtrar = ()=>{
+                            resultado.innerHTML = '';
+                            const texto = formulario.value.toLowerCase();
+                            for(let producto of productos){
+                                let nombre = producto.busTransaccion.toLowerCase();
+                                if(nombre.indexOf(texto) !== -1){
+                                    resultado.innerHTML += `
+                                        <li>${producto.busTransaccion} - ${producto.busTransaccion} - valor: ${producto.valor}</li>
+                                    `
+                                    
+                                }
+                            }
+                            if(resultado.innerHTML ===''){
+                                resultado.innerHTML += `
+                                    <li>Producto no encontrado..</li>
+                                `
+                            }
+                        }
+
+                        boton.addEventListener('click',filtrar);
+                    </script>
+
+
+
+
+
+
+        
+      </form>
+      <h1>Ingrese un número de cédula:</h1>
+        <form action="/notacredito/add/search" class="search-form">
+            <i class="fas fa-search"></i>
+            <input type="search" name="term" placeholder="Cedula">
+            <input type="submit" value="Search">
+        </form>
+    </section>
+    <div class="row">
+        {{#each cliente}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+              <div >
+                 <label >Nombre: </label>&nbsp;&nbsp;
+                    <input name="nombre" type="text" disabled value="{{nombre}}">
+                  
+              </div>  
+              <div>
+                <label >Apellido: </label>&nbsp;&nbsp;
+                    <input name="apellido" type="text" disabled value="{{apellido}}">
+              </div>
+              <div>
+                <label >Teléfono: </label>&nbsp;&nbsp;
+                    <input name="telefono" type="text" disabled value="{{telefono}}">
+              </div>
+              <div>
+                <label >Cédula: </label>&nbsp;&nbsp;
+                    <input name="cedula" type="text" disabled value="{{cedula}}">
+              </div>
+              <div>
+                <label >Email: </label>&nbsp;&nbsp;
+                    <input name="email" type="text" disabled value="{{email}}">
+              </div>
+              <div>
+                <label >Dirección: </label>&nbsp;&nbsp;
+                    <input name="direccion" type="text" disabled value="{{direccion}}">
+              </div>
+                    <!--p class="m-2">Nombre: {{nombre}}</p>
+                    <p class="m-2">Apellido: {{apellido}}</p>
+                    <p class="m-2">Teléfono: {{telefono}}</p>
+                    <p class="m-2">Cédula: {{cedula}}</p>
+                    <p class="m-2">Email: {{email}}</p>
+                    <p class="m-2">Dirección: {{direccion}}</p-->
+									             
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not cliente saved yet.</p>
+                <a href="/cliente/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <h1>Ingrese un producto:</h1>
+        <form action="/notacredito/add/searchProducto" class="search-form">
+            <i class="fas fa-search"></i>
+            <input type="search" name="term" placeholder="Nombre producto">
+            <input type="submit" value="Search">
+        </form>
+    </section>
+    <div class="row">
+        {{#each producto}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+              <div >
+                 <label >Nombre: </label>&nbsp;&nbsp;
+                    <input name="nombre" type="text" disabled value="{{nombre}}">
+                  
+              </div>  
+              <div>
+                <label >Tipo Producto: </label>&nbsp;&nbsp;
+                    <input name="tipoproducto" type="text" disabled value="{{tipoproducto}}">
+              </div>
+              <div>
+                <label >Iva: </label>&nbsp;&nbsp;
+                    <input name="Iva" type="text" disabled value="{{Iva}}">
+              </div>
+              <div>
+                <label >Precio: </label>&nbsp;&nbsp;
+                    <input name="precio" type="text" disabled value="{{precio}}">
+              </div>
+              <div>
+                <label >Stock: </label>&nbsp;&nbsp;
+                    <input name="Stock" type="text" disabled value="{{Stock}}">
+              </div>
+              <div>
+                <label >Detalle: </label>&nbsp;&nbsp;
+                    <input name="Detalle" type="text" disabled value="{{Detalle}}">
+              </div>
+                    <!--p class="m-2">Nombre: {{nombre}}</p>
+                    <p class="m-2">Apellido: {{apellido}}</p>
+                    <p class="m-2">Teléfono: {{telefono}}</p>
+                    <p class="m-2">Cédula: {{cedula}}</p>
+                    <p class="m-2">Email: {{email}}</p>
+                    <p class="m-2">Dirección: {{direccion}}</p-->
+									             
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not cliente saved yet.</p>
+                <a href="/cliente/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 <div class="container p-4">
       <form class="row g-3" action="/notacredito/add" method="POST">
 
@@ -21,7 +188,7 @@
           <div class="form-floating mb-3">
                <div >
                  <label >Secuencial: </label>&nbsp;&nbsp;
-                    <input name="numsecuencia" type="text" disabled >
+                    <input name="numsecuencia" type="text" value="001" disabled>
               </div>    
           </div>
       </div>
@@ -38,10 +205,7 @@
           <div class="col-auto">
             <input type="text" name="informacion" class="form-control" id="idcedula" >
           </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-          </div>
-      </form>
+          
       <div class="row">
             <div class="col-5">
               <label>Nombres/Razón social</label>
@@ -82,17 +246,17 @@
         </div>
       </div><br>
 
-         <div class="row">
+           <div class="row">
             <div class="col-4">
                 <div class="card">
-                    <form >
+                    <form action="/notacredito/add/buscar/{{producto.idproducto}}" method="GET">
                     <div class="card-body">
                         
                         <div class="form-group">
                               <div class="form-group d-flex" >
                             <div class="col-sm-7 d-flex">
-                                <input type="text"   class="form-control" >
-                                <button type="submit" class="btn btn-primary mb-3" href="/notacredito/add">Buscar</button>
+                                <input type="text"  id="nombre" class="form-control" >
+                                <button type="submit" class="btn btn-primary mb-3" >Buscar</button>
                             </div>
                              <div class="col-sm-6 ">
                                  <input type="text" class="form-control" >
