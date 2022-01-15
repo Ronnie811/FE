@@ -9,14 +9,14 @@ router.get('/add', isLoggedIn, (req, res) => {
 });
 
 router.post('/add', isLoggedIn, async (req, res)=>{
-    const {nombre, apellido, telefono, cedula, email, direccion} = req.body;
+    const {nombreCliente, apellidoCliente, telefonoCliente, cedulaCliente, emailCliente, direccionCliente} = req.body;
     const newCliente = {
-        nombre,
-        apellido,
-        telefono,
-        cedula,
-        email,
-        direccion,
+        nombreCliente,
+        apellidoCliente,
+        telefonoCliente,
+        cedulaCliente,
+        emailCliente,
+        direccionCliente,
         user_id: req.user.id
     };
     await pool.query('INSERT INTO cliente set ?', [newCliente]);
@@ -29,32 +29,32 @@ router.get('/', isLoggedIn,  async (req, res)=>{
     res.render('cliente/list', {cliente});
 });
 
-router.get('/delete/:id', isLoggedIn,async (req, res) => {
-    const { id } = req.params;
-    await pool.query('DELETE FROM cliente WHERE ID = ?', [id]);
+router.get('/delete/:idCliente', isLoggedIn,async (req, res) => {
+    const { idCliente } = req.params;
+    await pool.query('DELETE FROM cliente WHERE idCliente = ?', [idCliente]);
     req.flash('success', 'cliente Removed Successfully');
     res.redirect('/cliente');
 });
 
-router.get('/edit/:id', isLoggedIn, async (req, res) => {
-    const { id } = req.params;
-    const cliente = await pool.query('SELECT * FROM cliente WHERE id = ?', [id]);
+router.get('/edit/:idCliente', isLoggedIn, async (req, res) => {
+    const { idCliente } = req.params;
+    const cliente = await pool.query('SELECT * FROM cliente WHERE idCliente = ?', [idCliente]);
     console.log(cliente);
     res.render('cliente/edit', {cliente: cliente[0]});
 });
 
-router.post('/edit/:id', isLoggedIn, async (req, res) => {
-    const { id } = req.params;
-    const {nombre, apellido, telefono, cedula, email, direccion} = req.body; 
+router.post('/edit/:idCliente', isLoggedIn, async (req, res) => {
+    const { idCliente } = req.params;
+    const {nombreCliente, apellidoCliente, telefonoCliente, cedulaCliente, emailCliente, direccionCliente} = req.body; 
     const newCliente = {
-        nombre,
-        apellido,
-        telefono,
-        cedula,
-        email,
-        direccion
+        nombreCliente,
+        apellidoCliente,
+        telefonoCliente,
+        cedulaCliente,
+        emailCliente,
+        direccionCliente
     };
-    await pool.query('UPDATE cliente set ? WHERE id = ?', [newCliente, id]);
+    await pool.query('UPDATE cliente set ? WHERE idCliente = ?', [newCliente, idCliente]);
     req.flash('success', 'cliente Updated Successfully');
     res.redirect('/cliente');
 });
@@ -65,7 +65,7 @@ router.get('/search', async (req, res) => {
     console.log(term);
     // Make lowercase
     term = term.toLowerCase();
-    const cliente = await pool.query('SELECT * FROM cliente WHERE nombre = ?',[term]);
+    const cliente = await pool.query('SELECT * FROM cliente WHERE nombreCliente = ?',[term]);
     res.render('cliente/list', {cliente});
     
   });

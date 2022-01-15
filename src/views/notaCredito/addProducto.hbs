@@ -1,0 +1,263 @@
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Transacciones</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Nota de Crédito</li>
+  </ol>
+</nav>
+<section id ="search" class="search-wrap">
+
+  
+    <h1>Ingrese un producto:</h1>
+        <form action="/notacredito/add/searchProducto" class="search-form">
+            <i class="fas fa-search"></i>
+            <input type="search" name="term" placeholder="Nombre producto">
+            <input type="submit" value="Search">
+        </form>
+    </section>
+    <div class="row">
+        {{#each producto}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+              <div >
+                 <label >Nombre: </label>&nbsp;&nbsp;
+                    <input name="nombre" type="text" disabled value="{{nombre}}">
+                  
+              </div>  
+              <div>
+                <label >Tipo Producto: </label>&nbsp;&nbsp;
+                    <input name="tipoproducto" type="text" disabled value="{{tipoproducto}}">
+              </div>
+              <div>
+                <label >Iva: </label>&nbsp;&nbsp;
+                    <input name="Iva" type="text" disabled value="{{Iva}}">
+              </div>
+              <div>
+                <label >Precio: </label>&nbsp;&nbsp;
+                    <input name="precio" type="text" disabled value="{{precio}}">
+              </div>
+              <div>
+                <label >Stock: </label>&nbsp;&nbsp;
+                    <input name="Stock" type="text" disabled value="{{Stock}}">
+              </div>
+              <div>
+                <label >Detalle: </label>&nbsp;&nbsp;
+                    <input name="Detalle" type="text" disabled value="{{Detalle}}">
+              </div>
+                    <!--p class="m-2">Nombre: {{nombre}}</p>
+                    <p class="m-2">Apellido: {{apellido}}</p>
+                    <p class="m-2">Teléfono: {{telefono}}</p>
+                    <p class="m-2">Cédula: {{cedula}}</p>
+                    <p class="m-2">Email: {{email}}</p>
+                    <p class="m-2">Dirección: {{direccion}}</p-->
+									             
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not cliente saved yet.</p>
+                <a href="/cliente/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+<div class="container p-4">
+      <form class="row g-3" action="/notacredito/add" method="POST">
+
+        <div class="col-3">
+          <div class="form-floating mb-3">
+               <div class="atm-form-datepicker ">
+                 <label >Fecha: </label>&nbsp;&nbsp;
+                    <input type="date" class="form-datepicker">
+              </div>    
+          </div>
+      </div>
+
+      <div class="col-3">
+          <div class="form-floating mb-3">
+               <div >
+                 <label >Secuencial: </label>&nbsp;&nbsp;
+                    <input name="numsecuencia" type="text" value="001" disabled>
+              </div>    
+          </div>
+      </div>
+
+      <div class="col-12" font>
+        <font size=4,5>Datos del comprador</font>
+      </div>
+      <br><br>
+
+      <form class="row g-3" method="post" action="/notacredito/buscar/{{cliente.cedula}}">
+          <div class="col-auto">
+            <label class="visually-hidden">Ingrese el número de cédula: </label>
+          </div>
+          <div class="col-auto">
+            <input type="text" name="informacion" class="form-control" id="idcedula" >
+          </div>
+          
+      <div class="row">
+            <div class="col-5">
+              <label>Nombres/Razón social</label>
+              <input type="text" class="form-control"  aria-label="nombres" value="{{this.nombre}}">
+            </div> 
+            <div class="col-3">
+              <label>Identificación:</label>
+              <input type="text" class="form-control"  aria-label="id" value="{{this.cedula}}">
+            </div>
+      </div><br>
+      <div class="row">
+            <div class="col-3">
+              <label>Telefono/Celular: </label>
+              <input type="text" class="form-control"  aria-label="telefono" value="{{this.telefono}}">
+            </div>
+            <div class="col-4">
+              <label>Correo electrónico:</label>
+              <input type="text" class="form-control"  aria-label="id" value="{{this.email}}">
+            </div>
+            <div class="col-4">
+              <label>Dirección:</label>
+              <input type="text" class="form-control"  aria-label="id" value="{{this.direccion}}">
+            </div>
+      
+      <div class="col-12">
+                    <div class="row">
+                     <div class="col-4">
+                    <div class="form-group">
+                   <label for="">Factura: </label>
+                    <input name="numerofactura" type="text" class="form-control" >
+                   </div>
+                     </div>
+                    </div>
+                </div>
+      <div class="row">
+        <div class="col-4">
+        <font size=4,5>Productos/Servicios</font>
+        </div>
+      </div><br>
+
+           <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <form action="/notacredito/add/buscar/{{producto.idproducto}}" method="GET">
+                    <div class="card-body">
+                        
+                        <div class="form-group">
+                              <div class="form-group d-flex" >
+                            <div class="col-sm-7 d-flex">
+                                <input type="text"  id="nombre" class="form-control" >
+                                <button type="submit" class="btn btn-primary mb-3" >Buscar</button>
+                            </div>
+                             <div class="col-sm-6 ">
+                                 <input type="text" class="form-control" >
+                            </div>
+                        </div>
+                     </div>
+                        <div class="form-group d-flex">
+                                <div class="col-sm-4 d-flex">
+                                <input type="text"   class="form-control"  placeholder="$0.00">
+                            </div>
+                             <div class="col-sm-4">
+                                 <input type="number" value="1"  class="form-control" >
+                            </div>
+                                <div class="col-sm-5">
+                                 <input type="text"  placeholder="Stock" class="form-control" >
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-4">
+                                <input type="submit"  value="Agregar" class="btn btn-success">
+                            </div>
+                        </div>
+                </div>
+            </form>
+            </div>
+         </div> 
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="list" items="${lista}">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 
+                                </tr>
+                               </c:forEach>
+                            </tbody>
+                        </table>
+                      </div>
+
+                      <form >
+                          <div class="col-5">
+                            <label>Subtotal sin Impuestos</label>
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control" placeholder="0.00" disabled>
+                          </div>
+                          <div class="col-4">
+                            <label>Subtotal Iva 12% </label>
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control" placeholder="0.00" disabled>
+                          </div>
+                          <div class="col-5">
+                            <label>Subtotal 0% </label>
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control" placeholder="0.00" disabled>
+                          </div>
+                          <div class="col-4">
+                            <label>No objeto de Iva</label>
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control" placeholder="0.00" disabled>
+                          </div>
+                           <div class="col-5">
+                            <label>Descuento</label>
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control" placeholder="0.00" disabled>
+                          </div>
+                          <div class="col-4">
+                            <label>Valor ICE</label>
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control" placeholder="0.00" disabled>
+                          </div>
+                          <div class="col-4">
+                            <label>Valor Total</label>
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control" placeholder="0.00" disabled>
+                          </div>
+                      </form>
+                    <div class="card-footer d-flex">
+                      <div class="col-sm-12">
+                            <a class="btn btn-success">Guardar y firmar</a>
+                            <a class="btn btn-danger ">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+     
+   </form>
+</div>

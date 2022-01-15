@@ -9,7 +9,7 @@
    <form class="row g-3"  action="/producto/edit/{{producto.idproducto}}" method="POST">
       <div class="col-4" >
           <div class="form-floating mb-3">
-            <input name="nombre" type="text" class="form-control" id="floatingInput" value="{{producto.nombre}}" >
+            <input name="nombreProducto" type="text" class="form-control" id="floatingInput" value="{{producto.nombreProducto}}" >
             <label for="floatingInput">Nombre del producto</label>
           </div>
       </div>
@@ -27,8 +27,8 @@
          <div class="col-3">
           <div class="form-floating mb-3">
             <label>Iva: </label>&nbsp;&nbsp;
-            <select name="Iva">
-              <option value="{{producto.Iva}}" hidden="hidden" selected="selected">{{producto.Iva}}</option>
+            <select name="IvaProducto">
+              <option value="{{producto.IvaProducto}}" hidden="hidden" selected="selected">{{producto.IvaProducto}}</option>
               <option value="12">12%</option>
               <option value="0">0%</option>
               <option value="Excento">Excento de Iva</option>
@@ -38,19 +38,19 @@
       </div>
         <div class="col-5">
           <div class="form-floating mb-3">
-            <input name="precio" type="text" class="form-control" id="floatingInput" placeholder="0.00$" value="{{producto.precio}}">
+            <input name="precioProducto" type="text" class="form-control" id="floatingInput" placeholder="0.00$" value="{{producto.precioProducto}}">
             <label for="floatingInput">Costo del Producto</label>
           </div>
       </div>
       <div class="col-3">
           <div class="form-floating mb-3">
-            <input name="Stock" type="text" class="form-control" id="floatingInput" placeholder="0 " value="{{producto.Stock}}">
+            <input name="StockProducto" type="text" class="form-control" id="floatingInput" placeholder="0 " value="{{producto.StockProducto}}">
             <label for="floatingInput">Stock Inicial</label>
           </div>
       </div>
     <div class="col-6">
           <div class="form-floating mb-3">
-            <input name="Detalle" type="text" class="form-control" id="floatingInput" style="height: 80px;" value="{{producto.Detalle}}">
+            <input name="DetalleProducto" type="text" class="form-control" id="floatingInput" style="height: 80px;" value="{{producto.DetalleProducto}}">
             <label for="floatingInput">Detalle</label>
           </div>
       </div>

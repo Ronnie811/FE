@@ -5,11 +5,21 @@ const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
 router.get('/add', isLoggedIn, async (req, res) => {
-    //const cliente = await pool.query('SELECT * FROM cliente');
+    
     const cliente = await pool.query('SELECT * FROM cliente WHERE user_id = ?',[req.user.id]);
     const producto = await pool.query('SELECT * FROM producto');
 
     res.render('notacredito/add',{cliente,producto});
+});
+
+router.get('/addCliente', isLoggedIn, async (req, res) => {
+    const cliente = await pool.query('SELECT * FROM cliente WHERE user_id = ?',[req.user.id]);
+    res.render('notacredito/addCliente',{cliente});
+});
+
+router.get('/addProducto', isLoggedIn, async (req, res) => {
+    const producto = await pool.query('SELECT * FROM producto');
+    res.render('notacredito/addProducto',{producto});
 });
 
     
@@ -41,39 +51,46 @@ router.get('/add/buscar/:idproducto', isLoggedIn,async (req, res) => {
     res.render('notacredito/add', {productosBusqueda});
 });
 
-  //Fetch Items by ID for billing
-  router.post('/fetchitem', isLoggedIn,async (req, res) =>{
-    //item_id = req.body.itemid
-    const { itemid1 } = req.params;
-    console.log(req.body)
-    console.log(itemid1)
-    console.log('itemid1')
-
-    //let sql = 'SELECT * FROM stockdb WHERE ItemID = ?'
-    const productosBusqueda = await pool.query('SELECT * FROM producto where idproducto = ?',itemid1);
-    res.render('notacredito/add', {productosBusqueda});
-});
-
 // Search for clientes
 router.get('/add/search', async (req, res) => {
     let { term } = req.query;
     console.log(term);
     // Make lowercase
     term = term.toLowerCase();
-    const cliente = await pool.query('SELECT * FROM cliente WHERE cedula = ?',[term]);
+    const cliente = await pool.query('SELECT * FROM cliente WHERE cedulaCliente = ?',[term]);
     res.render('notacredito/add', {cliente});
     
   });
 
+
   // Search for producto
 router.get('/add/searchProducto', async (req, res) => {
-    let { term } = req.query;
+    console.log(req.query);
+    let { term, idCliente } = req.query;
     console.log(term);
     // Make lowercase
     term = term.toLowerCase();
-    const producto = await pool.query('SELECT * FROM producto WHERE nombre = ?',[term]);
-    res.render('notacredito/add', {producto});
+    
+    const producto = await pool.query('SELECT * FROM producto WHERE nombreProducto = ?',[term]);
+    const cliente = await pool.query('SELECT * FROM cliente WHERE idCliente = ?',[idCliente]);
+    res.render('notacredito/add', {producto, cliente});
     
   });
+
+  router.post('/addNotaCredito', isLoggedIn, async (req, res)=>{
+    const {nombreCliente, apellidoCliente, telefonoCliente, cedulaCliente, emailCliente, direccionCliente} = req.body;
+    const newCliente = {
+        nombreCliente,
+        apellidoCliente,
+        telefonoCliente,
+        cedulaCliente,
+        emailCliente,
+        direccionCliente,
+        user_id: req.user.id
+    };
+    await pool.query('INSERT INTO cliente set ?', [newCliente]);
+    req.flash('success', 'Cliente Saved Successfully');
+    res.redirect('notacredito/add');
+});
 
 module.exports = router;

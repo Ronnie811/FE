@@ -9,14 +9,14 @@ router.get('/add', isLoggedIn, (req, res) => {
 });
 
 router.post('/add', isLoggedIn, async (req, res)=>{
-    const {nombre, tipoproducto, Iva, precio, Stock, Detalle} = req.body;
+    const {nombreProducto, tipoproducto, IvaProducto, precioProducto, StockProducto, DetalleProducto} = req.body;
     const newProducto = {
-        nombre,
+        nombreProducto,
         tipoproducto,
-        Iva,
-        precio,
-        Stock,
-        Detalle,
+        IvaProducto,
+        precioProducto,
+        StockProducto,
+        DetalleProducto,
         user_id: req.user.id
     };
     await pool.query('INSERT INTO producto set ?', [newProducto]);
@@ -45,14 +45,14 @@ router.get('/edit/:idproducto', isLoggedIn, async (req, res) => {
 
 router.post('/edit/:idproducto', isLoggedIn, async (req, res) => {
     const { idproducto } = req.params;
-    const {nombre, tipoproducto, Iva, precio, Stock, Detalle} = req.body; 
+    const {nombreProducto, tipoproducto, IvaProducto, precioProducto, StockProducto, DetalleProducto} = req.body; 
     const newProducto = {
-        nombre,
+        nombreProducto,
         tipoproducto,
-        Iva,
-        precio,
-        Stock,
-        Detalle
+        IvaProducto,
+        precioProducto,
+        StockProducto,
+        DetalleProducto,
     };
     await pool.query('UPDATE producto set ? WHERE idproducto = ?', [newProducto, idproducto]);
     req.flash('success', 'El registro se actualizó');
