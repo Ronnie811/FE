@@ -78,6 +78,10 @@ router.get('/add/searchProducto', async (req, res) => {
   });
 
   router.post('/addNotaCredito', isLoggedIn, async (req, res)=>{
+    console.log(req.query);
+    let { term, idCliente } = req.query;
+    console.log(idCliente);
+    console.log(term);
     const {nombreCliente, apellidoCliente, telefonoCliente, cedulaCliente, emailCliente, direccionCliente} = req.body;
     const newCliente = {
         nombreCliente,
