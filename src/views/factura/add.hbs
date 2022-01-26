@@ -4,78 +4,140 @@
     <li class="breadcrumb-item active" aria-current="page">Factura</li>
   </ol>
 </nav>
-
-<div class="container p-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="">Cliente</label>
-                    <select name="", id="" class="form-control"></select>
-                </div>
-            </div>
-                <div class="col-6">
-                    <label for=""> N° de Factura: 00010</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12">
-        <div class="row"> 
-            <div class="col-4">
-                <div class="form-group">
-                <label for="">Producto</label>
-                <select name="" id="" class="form-control" ></select>
-                </div>
-                <div class="form-group">
-                <label for="">Precio</label>
-                <input type="text" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-                <label for="">Cantidad</label>
-                <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary float-right ">Agregar</button>
-            </div>
-            </div>
-
-            <div class="col-8">
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Subtotal</th> 
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th colspan="3"></th>
-                            <th>Subtotal sin Impuestos</th>
-                        </tr>
-                        <tr>
-                            <th colspan="3"></th>
-                            <th>Iva 12%</th>
-                        </tr>
-                        <tr>
-                            <th colspan="3"></th>
-                            <th>Descuento</th>
-                        </tr>
-                        <tr>
-                            <th colspan="3"></th>
-                            <th>Total a pagar</th>
-                        </tr>
-                    </thead>
-                </table>
-                <button class="btn btn-success float-right">Guardar y firmar</button>
-            </div>
-        </div>
-        </div>
+<div class="form-group">
+            <label>Nombre: </label>&nbsp;&nbsp;
+            <input name="numerofactura" type="text"  value="0001">
+          </div>
+<section id="search" class="search-wrap">
+<form action="/factura/addNotaCredito" method="POST"></form>
+  <h1>Ingrese un número de cédula:</h1>1w
+  <form action="/factura/add/search" class="search-form">
+    <i class="fas fa-search"></i>
+    <input type="search" name="term" placeholder="Cedula">
+    <input type="submit" value="Search">
+  </form>
+</section>
+<div class="row">
+  {{#each cliente}}
+  <div class="col-md-3">
+    <div class="card text-center">
+      <div class="card-body">
+        <form action="/factura/addNotaCredito" method="POST">
+          <input name="idCliente" class="form-control" type="hidden" id="idCliente" disabled value="{{idCliente}}">
+          <div class="form-group">
+            <label>Nombre: </label>&nbsp;&nbsp;
+            <input name="nombreCliente" type="text"  value="{{nombreCliente}}">
+          </div>
+          <div>
+            <label>Apellido: </label>&nbsp;&nbsp;
+            <input name="apellidoCliente" type="text" value="{{apellidoCliente}}">
+          </div>
+          <div>
+            <label>Teléfono: </label>&nbsp;&nbsp;
+            <input name="telefonoCliente" type="text"  value="{{telefonoCliente}}">
+          </div>
+          <div>
+            <label>Cédula: </label>&nbsp;&nbsp;
+            <input name="cedulaCliente" type="text"  value="{{cedulaCliente}}">
+          </div>
+          <div>
+            <label>Email: </label>&nbsp;&nbsp;
+            <input name="emailCliente" type="text"  value="{{emailCliente}}">
+          </div>
+          <div>
+            <label>Dirección: </label>&nbsp;&nbsp;
+            <input name="direccionCliente" type="text" value="{{direccionCliente}}">
+          </div>
+          <!--div class="form-group">
+            <button class="btn btn-success btn-block">
+              Save
+            </button>
+          </div-->
+        </form>
+      </div>
     </div>
+  </div>
+  {{else}}
+  <div class="col-md-4 mx-auto">
+    <div class="card card-body text-center">
+      <p>There are not cliente saved yet.</p>
+      <a href="/cliente/add">Create One!</a>
+    </div>
+  </div>
+  {{/each}}
 </div>
+
+
+<h1>Ingrese un producto:</h1>
+<form action="/factura/add/searchProducto" class="search-form" id="formProducts">
+  <i class="fas fa-search"></i>
+  <input type="search" name="term" placeholder="Nombre producto">
+  <input type="submit" value="Search">
+</form>
+</section>
+<div class="row">
+  {{#each producto}}
+  <div class="col-md-3">
+    <div class="card text-center">
+      <div class="card-body">
+        
+        <div>
+          <label>Nombre: </label>&nbsp;&nbsp;
+          <input name="nombreProducto" type="text"  value="{{nombreProducto}}">
+
+        </div>
+        <div>
+          <label>Tipo Producto: </label>&nbsp;&nbsp;
+          <input name="tipoproducto" type="text"  value="{{tipoproducto}}">
+        </div>
+        <div>
+          <label>Iva: </label>&nbsp;&nbsp;
+          <input name="IvaProducto" type="text"  value="{{IvaProducto}}">
+        </div>
+        <div>
+          <label>Precio: </label>&nbsp;&nbsp;
+          <input name="precioProducto" type="text"  value="{{precioProducto}}">
+        </div>
+        <div>
+          <label>Stock: </label>&nbsp;&nbsp;
+          <input name="StockProducto" type="text"  value="{{StockProducto}}">
+        </div>
+        <div>
+          <label>Detalle: </label>&nbsp;&nbsp;
+          <input name="DetalleProducto" type="text"  value="{{DetalleProducto}}">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-block">
+              Save
+            </button>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  {{else}}
+  <div class="col-md-4 mx-auto">
+    <div class="card card-body text-center">
+      <p>There are not cliente saved yet.</p>
+      <a href="/cliente/add">Create One!</a>
+    </div>
+  </div>
+  {{/each}}
+</div>
+</form>
+
+<script>
+  function logSubmit(event) {
+    //alert(document.getElementById('idCliente').value);
+    //log.textContent = `Form Submitted! Time stamp: ${event.timeStamp}`;
+    event.preventDefault();
+    window.location.replace(`/factura/add/searchProducto?idCliente=${document.getElementById('idCliente').value}&term=${event.target.term.value}`);
+    //fetch(`/notacredito/add/searchProducto?idCliente=${document.getElementById('idCliente').value}&term=${event.target.term.value}`)
+    // .then(response => response.json())
+    //.then(data => console.log(data))
+    //.catch(err => console.error(err));
+  }
+  const form = document.getElementById('formProducts');
+  form.addEventListener('submit', logSubmit);
+
+</script>

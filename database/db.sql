@@ -196,28 +196,32 @@ FOREIGN KEY (user_id) REFERENCES usuarios(id);
 CREATE TABLE factura (
   idfactura int(11) NOT NULL,
   fecha date NOT NULL,
-  secuencial varchar(25) NOT NULL,
   nombrecliente varchar(50) NOT NULL,
-  cedula varchar(15) NOT NULL,
-  telefono varchar(10) NOT NULL,
-  correo varchar(30) NOT NULL,
-  direccion varchar(50) NOT NULL,
   codigoproducto int(11) NOT NULL,
   nombreproducto varchar(25) NOT NULL,
-  descrpcion varchar(25) NOT NULL,
-  precio float NOT NULL,
-  cantidad int(11) NOT NULL,
-  subtotal float NOT NULL,
-  iva12 float NOT NULL,
-  noobjetoiva int(11) NOT NULL,
-  descuento float NOT NULL,
-  ice float NOT NULL,
   total float NOT NULL,
   user_id int(11) NOT NULL,
   cliente_id int(11) NOT NULL,
-  CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES usuarios(id),
-  CONSTRAINT fk_cliente FOREIGN KEY(cliente_id) REFERENCES cliente(id)
+  producto_id int(11) NOT NULL
 ); 
+
+ALTER TABLE factura
+    ADD PRIMARY KEY(idfactura);
+
+ALTER TABLE factura
+    MODIFY idfactura INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+	
+ALTER TABLE factura
+ADD CONSTRAINT fk_user7
+FOREIGN KEY (user_id) REFERENCES usuarios(id);
+
+ALTER TABLE factura
+ADD CONSTRAINT fk_user8
+FOREIGN KEY (producto_id) REFERENCES producto(idproducto);
+
+ALTER TABLE factura
+ADD CONSTRAINT fk_user9
+FOREIGN KEY (cliente_id) REFERENCES cliente(idCliente);
 
 ALTER TABLE factura
   ADD PRIMARY KEY (idfactura);
