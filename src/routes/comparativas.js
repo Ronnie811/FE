@@ -17,7 +17,7 @@ router.post('/busqueda/', isLoggedIn, async (req, res) => {
     const fechafinSumanda = fechafin.split('-');
     const dia = fechafinSumanda[0]+'-'+fechafinSumanda[1]+'-'+(Number(fechafinSumanda[2])+1);
     const tarjetas = await pool.query(`select u.nombreusuario, t.nombretarjeta, t.fecha from usuarios as u inner join tarjetas as t on u.id = t.user_id where u.nombreusuario = ? and t.fecha between ? and ? `, [nombreusuario,fechainicio,dia]);
-    console.log(tarjetas);
+    console.log(tarjetas);                     
     console.log(dia);
     
     res.render('comparativas/usuariostarjetas', {tarjetas});

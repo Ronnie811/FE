@@ -9,8 +9,8 @@
             <input name="numerofactura" type="text"  value="0001">
           </div>
 <section id="search" class="search-wrap">
-<form action="/factura/addNotaCredito" method="POST"></form>
-  <h1>Ingrese un número de cédula:</h1>1w
+<form action="/factura/addFactura" method="POST"></form>
+  <h1>Ingrese un número de cédula:</h1>
   <form action="/factura/add/search" class="search-form">
     <i class="fas fa-search"></i>
     <input type="search" name="term" placeholder="Cedula">
@@ -22,31 +22,31 @@
   <div class="col-md-3">
     <div class="card text-center">
       <div class="card-body">
-        <form action="/factura/addNotaCredito" method="POST">
+        <form action="/factura/addFactura" method="POST">
           <input name="idCliente" class="form-control" type="hidden" id="idCliente" disabled value="{{idCliente}}">
           <div class="form-group">
-            <label>Nombre: </label>&nbsp;&nbsp;
+            <label>Nombres: </label>&nbsp;&nbsp;
             <input name="nombreCliente" type="text"  value="{{nombreCliente}}">
           </div>
           <div>
-            <label>Apellido: </label>&nbsp;&nbsp;
-            <input name="apellidoCliente" type="text" value="{{apellidoCliente}}">
+            <label>Identificación Cliente: </label>&nbsp;&nbsp;
+            <input name="identificacionCliente" type="text" value="{{identificacionCliente}}">
           </div>
           <div>
-            <label>Teléfono: </label>&nbsp;&nbsp;
-            <input name="telefonoCliente" type="text"  value="{{telefonoCliente}}">
+            <label>Tipo Cliente: </label>&nbsp;&nbsp;
+            <input name="tipoCliente" type="text"  value="{{tipoCliente}}">
           </div>
           <div>
-            <label>Cédula: </label>&nbsp;&nbsp;
-            <input name="cedulaCliente" type="text"  value="{{cedulaCliente}}">
+            <label>Direccion: </label>&nbsp;&nbsp;
+            <input name="direccion" type="text"  value="{{direccion}}">
+          </div>
+          <div>
+            <label>Telefono: </label>&nbsp;&nbsp;
+            <input name="telefono" type="text"  value="{{telefono}}">
           </div>
           <div>
             <label>Email: </label>&nbsp;&nbsp;
-            <input name="emailCliente" type="text"  value="{{emailCliente}}">
-          </div>
-          <div>
-            <label>Dirección: </label>&nbsp;&nbsp;
-            <input name="direccionCliente" type="text" value="{{direccionCliente}}">
+            <input name="email" type="text" value="{{email}}">
           </div>
           <!--div class="form-group">
             <button class="btn btn-success btn-block">
@@ -82,29 +82,37 @@
       <div class="card-body">
         
         <div>
-          <label>Nombre: </label>&nbsp;&nbsp;
-          <input name="nombreProducto" type="text"  value="{{nombreProducto}}">
+          <label>Código principal: </label>&nbsp;&nbsp;
+          <input name="codPrincipal" type="text"  value="{{codPrincipal}}">
 
         </div>
         <div>
-          <label>Tipo Producto: </label>&nbsp;&nbsp;
-          <input name="tipoproducto" type="text"  value="{{tipoproducto}}">
+          <label>Código auxiliar: </label>&nbsp;&nbsp;
+          <input name="codAuxiliar" type="text"  value="{{codAuxiliar}}">
         </div>
         <div>
-          <label>Iva: </label>&nbsp;&nbsp;
-          <input name="IvaProducto" type="text"  value="{{IvaProducto}}">
+          <label>Tipo producto: </label>&nbsp;&nbsp;
+          <input name="tipoProducto" type="text"  value="{{tipoProducto}}">
         </div>
         <div>
-          <label>Precio: </label>&nbsp;&nbsp;
-          <input name="precioProducto" type="text"  value="{{precioProducto}}">
+          <label>Nombre producto: </label>&nbsp;&nbsp;
+          <input name="nombreProducto" type="text"  value="{{nombreProducto}}">
         </div>
         <div>
-          <label>Stock: </label>&nbsp;&nbsp;
-          <input name="StockProducto" type="text"  value="{{StockProducto}}">
+          <label>Valor unitario: </label>&nbsp;&nbsp;
+          <input name="valorUnitario" type="text"  value="{{valorUnitario}}">
         </div>
         <div>
-          <label>Detalle: </label>&nbsp;&nbsp;
-          <input name="DetalleProducto" type="text"  value="{{DetalleProducto}}">
+          <label>Tarifa Iva: </label>&nbsp;&nbsp;
+          <input name="tarifaIva" type="text"  value="{{tarifaIva}}">
+        </div>
+        <div>
+          <label>TarifaIce: </label>&nbsp;&nbsp;
+          <input name="tarifaIce" type="text"  value="{{tarifaIce}}">
+        </div>
+        <div>
+          <label>Código IrbPnr: </label>&nbsp;&nbsp;
+          <input name="codIrbPnr" type="text"  value="{{codIrbPnr}}">
         </div>
         <div class="form-group">
             <button class="btn btn-success btn-block">

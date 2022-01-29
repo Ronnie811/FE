@@ -17,7 +17,7 @@ ALTER TABLE usuarios
 ALTER TABLE usuarios
     MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
 
-CREATE TABLE cliente (
+/*CREATE TABLE cliente (
   idCliente INT(11) NOT NULL,
   nombreCliente VARCHAR(32) NOT NULL,
   apellidoCliente VARCHAR(60) NOT NULL,
@@ -25,6 +25,16 @@ CREATE TABLE cliente (
   cedulaCliente VARCHAR(50) NOT NULL,
   emailCliente VARCHAR(16) NOT NULL,
   direccionCliente VARCHAR(64) NOT NULL
+);*/
+
+CREATE TABLE cliente (
+  idCliente INT(11) NOT NULL,
+  nombreCliente VARCHAR(32) NOT NULL,
+  identificacionCliente VARCHAR(60) NOT NULL,
+  tipoCliente VARCHAR(16) NOT NULL,
+  direccion VARCHAR(50) NOT NULL,
+  telefono VARCHAR(16) NOT NULL,
+  email VARCHAR(64) NOT NULL
 );
 
 ALTER TABLE cliente
@@ -37,7 +47,7 @@ ALTER TABLE cliente
 ADD user_id INT(11);
 
  
-CREATE TABLE producto (
+/*CREATE TABLE producto (
   idproducto INT(11) NOT NULL,
   nombreProducto VARCHAR(32) NOT NULL,
   tipoproducto VARCHAR(10) NOT NULL,
@@ -45,7 +55,61 @@ CREATE TABLE producto (
   precioProducto FLOAT(6,2) NOT NULL,
   StockProducto INT(15) NOT NULL,
   DetalleProducto VARCHAR(75) NULL
+);*/
+CREATE TABLE TARIFA_IVA (
+  idTarifaIva INT(11) NOT NULL,
+  codIva INT(32) NOT NULL,
+  porcentajeIva VARCHAR(32) NOT NULL
 );
+
+ALTER TABLE TARIFA_IVA
+  ADD PRIMARY KEY (idTarifaIva);
+
+ALTER TABLE TARIFA_IVA
+  MODIFY idTarifaIva INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+insert into TARIFA_IVA (codIva,porcentajeIva) values (0,'0%');
+insert into TARIFA_IVA (codIva,porcentajeIva) values (2,'12%');
+insert into TARIFA_IVA (codIva,porcentajeIva) values (3,'14%');
+insert into TARIFA_IVA (codIva,porcentajeIva) values (6,'No objeto de Impuesto');
+insert into TARIFA_IVA (codIva,porcentajeIva) values (7,'Excento de Iva');
+
+
+CREATE TABLE TARIFA_ICE (
+  idTarifaIce INT(11) NOT NULL,
+  codIce INT(32) NOT NULL,
+  descripcionIce VARCHAR(32) NOT NULL,
+  tarifaAdValorem VARCHAR(32) NOT NULL,
+  tarifaEspecificaED VARCHAR(32) NOT NULL,
+  tarifaEspecificaMD2 VARCHAR(32) NOT NULL
+);
+
+ALTER TABLE TARIFA_ICE
+  ADD PRIMARY KEY (idTarifaIce);
+
+ALTER TABLE TARIFA_ICE
+  MODIFY idTarifaIce INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3101,'ICE Bebidas Energizantes','10%','','');
+insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3041,'ICE Cerveza Industrial Gran Escala','75%','13,2000','');
+insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3073,'ICE Vehículos Motorizados cuyo PVP sea hasta de 20000 USD','5%','','');
+insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3077,'ICE Vehículos Motorizados cuyo PVP superior USD 40.000
+hasta 50.000','20%','','');
+insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3073,'ICE Vehículos Motorizados cuyo PVP sea hasta de 20000 USD','5%','','');
+
+CREATE TABLE producto (
+  idproducto INT(11) NOT NULL,
+  codPrincipal INT(32) NOT NULL,
+  codAuxiliar INT(32) NOT NULL,
+  tipoProducto VARCHAR(32) NOT NULL,
+  nombreProducto VARCHAR(64) NOT NULL,
+  valorUnitario FLOAT(6,2) NOT NULL,
+  tarifaIva INT(11) NULL,
+  tarifaIce INT(11) NULL,
+  codIrbPnr INT(11) NULL
+);
+
+
 
 ALTER TABLE producto
   ADD PRIMARY KEY (idproducto);

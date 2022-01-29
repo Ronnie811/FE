@@ -6,61 +6,120 @@
 </nav>
 
 <div class="container p-4">
-      <form class="row g-3" action="/producto/add" method="POST">
+  <form class="row g-3" action="/producto/add" method="POST">
 
-      <div class="col-4" >
-          <div class="form-floating mb-3">
-            <input name="nombreProducto" type="text" class="form-control" id="floatingInput" >
-            <label for="floatingInput">Nombre del producto</label>
-          </div>
+    <div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="codPrincipal" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">codigo Principal</label>
       </div>
-        <div class="col-3">
-          <div class="form-floating mb-3">
-            <label >Tipo de producto: </label>&nbsp;&nbsp;
-            <select name="tipoproducto">
-              <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
-              <option value="Bien">Bien</option>
-              <option value="Servicio">Servicio</option>
-          </select>
+    </div>
+    <div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="codAuxiliar" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">codigo Auxiliar</label>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-floating mb-3">
+        <label>Tipo de producto: </label>&nbsp;&nbsp;
+        <select name="tipoProducto">
+          <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
+          <option value="Bien">Bien</option>
+          <option value="Servicio">Servicio</option>
+        </select>
 
-          </div>
       </div>
-         <div class="col-3">
-          <div class="form-floating mb-3">
-            <label>Iva: </label>&nbsp;&nbsp;
-            <select name="IvaProducto">
-              <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
-              <option value="12">12%</option>
-              <option value="0">0%</option>
-              <option value="Excento">Excento de Iva</option>
-          </select>
+    </div>
+    <!--div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="tipoproducto" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">tipo producto</label>
+      </div>
+    </div-->
+    <div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="nombreProducto" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">nombre Producto</label>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="valorUnitario" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">valor Unitario</label>
+      </div>
+    </div>
+    <!--div class="col-3">
+      <div class="form-floating mb-3">
+        <label>Iva: </label>&nbsp;&nbsp;
+        <select name="tarifaIva">
+          <option value="{{status}}" hidden="hidden" selected="selected">{{status}}</option>
+          <option value="12">12%</option>
+          <option value="0">0%</option>
+          <option value="Excento">Excento de Iva</option>
+        </select>
 
-          </div>
       </div>
-        <div class="col-5">
-          <div class="form-floating mb-3">
-            <input name="precioProducto" type="text" class="form-control" id="floatingInput" placeholder="0.00$">
-            <label for="floatingInput">Costo del Producto</label>
-          </div>
+    </div-->
+    <!--div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="tarifaIce" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">tarifa Ice</label>
       </div>
-      <div class="col-3">
-          <div class="form-floating mb-3">
-            <input name="StockProducto" type="text" class="form-control" id="floatingInput" placeholder="0 ">
-            <label for="floatingInput">Stock Inicial</label>
-          </div>
+    </div-->
+    <div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="codIrbPnr" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">codigo IrbPnr</label>
       </div>
-    <div class="col-6">
-          <div class="form-floating mb-3">
-            <input name="DetalleProducto" type="text" class="form-control" id="floatingInput" style="height: 80px;">
-            <label for="floatingInput">Detalle</label>
-          </div>
+    </div> 
+    <div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="tarifaIce" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">codigo tarifa IVA</label>
       </div>
+    </div> 
+    <div class="col-4">
+      <div class="form-floating mb-3">
+        <input name="tarifaIva" type="text" class="form-control" id="floatingInput">
+        <label for="floatingInput">codigo tarifa iva</label>
+      </div>
+    </div> 
+    <!--select class="form-control" name="porcentajeIva">
+                            {{#each TARIFA_IVA}}
+                                <option value="{{this.porcentajeIva}}" >{{this.porcentajeIva}}</option>
+                            {{/each}}
+                        </select>    
+    <select class="form-control" name="codIce">
+                            {{#each TARIFA_ICE}}
+                                <option valuetipoProducto="{{this.codIce}}" >{{this.codIce}}</option>
+                            {{/each}}
+                        </select-->  
+                           
+    <!--div class="col-5">
+      <div class="form-floating mb-3">
+        <input name="precioProducto" type="text" class="form-control" id="floatingInput" placeholder="0.00$">
+        <label for="floatingInput">Costo del Producto</label>
+      </div>
+    </di-->
+    <!--div class="col-3">
+      <div class="form-floating mb-3">
+        <input name="StockProducto" type="text" class="form-control" id="floatingInput" placeholder="0 ">
+        <label for="floatingInput">Stock Inicial</label>
+      </div>
+    </div-->
+    <!--div class="col-6">
+      <div class="form-floating mb-3">
+        <input name="DetalleProducto" type="text" class="form-control" id="floatingInput" style="height: 80px;">
+        <label for="floatingInput">Detalle</label>
+      </div>
+    </div-->
 </div>
- <div class="container p-4">
-        <button class="btn btn-success btn-block">
-            Guardar
-        </button>
-      </div>
+<div class="container p-4">
+  <button class="btn btn-success btn-block">
+    Guardar
+  </button>
+</div>
 
 
 </form>

@@ -77,7 +77,7 @@ router.get('/add/searchProducto', async (req, res) => {
     
   });
 
-  router.post('/addNotaCredito', isLoggedIn, async (req, res)=>{
+ /* router.post('/addNotaCredito', isLoggedIn, async (req, res)=>{
     console.log(req.query);
     let { term, idCliente } = req.query;
     console.log(idCliente);
@@ -95,6 +95,6 @@ router.get('/add/searchProducto', async (req, res) => {
     await pool.query('INSERT INTO cliente set ?', [newCliente]);
     req.flash('success', 'Cliente Saved Successfully');
     res.redirect('notacredito/add');
-});
+});*/
 
 module.exports = router;

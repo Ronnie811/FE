@@ -9,14 +9,14 @@ router.get('/add', isLoggedIn, (req, res) => {
 });
 
 router.post('/add', isLoggedIn, async (req, res)=>{
-    const {nombreCliente, apellidoCliente, telefonoCliente, cedulaCliente, emailCliente, direccionCliente} = req.body;
+    const {nombreCliente, identificacionCliente, tipoCliente, direccion, telefono, email} = req.body;
     const newCliente = {
         nombreCliente,
-        apellidoCliente,
-        telefonoCliente,
-        cedulaCliente,
-        emailCliente,
-        direccionCliente,
+        identificacionCliente,
+        tipoCliente,
+        direccion,
+        telefono,
+        email,
         user_id: req.user.id
     };
     await pool.query('INSERT INTO cliente set ?', [newCliente]);

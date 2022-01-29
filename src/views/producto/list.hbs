@@ -14,27 +14,28 @@
 <div class="container p-4">
         <table class="table table-bordered" style="background-color: white;">
             <tr>
-            <th scope="col">Codigo Producto</th>
-            <th scope="col">Nombre Producto</th>
-            <th scope="col">Tipo de Producto</th>
-            <th scope="col">Porcentaje Iva</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Detalle</th>
-            <th scope="col" class="text-end">Acciones</th>
+            <th scope="col">codigo Principal</th>
+            <th scope="col">codigo Auxiliar</th>
+            <th scope="col">tipo Producto</th>
+            <th scope="col">nombre Producto</th>
+            <th scope="col">valor Unitario</th>
+            <th scope="col">tarifa Iva</th>
+            <th scope="col">tarifa Ice</th>
+            <th scope="col">codigo Irbpnr</th>
             </tr>
         </thead>
         <tbody>
 
             {{#each producto}}
             <tr>
-            <th scope="producto">{{this.idproducto}}</th>
+            <th scope="producto">{{this.codAuxiliar}}</th>
+            <td>{{this.codAuxiliar}}</td>
+            <td>{{this.tipoProducto}}</td>
             <td>{{this.nombreProducto}}</td>
-            <td>{{this.tipoproducto}}</td>
-            <td>{{this.IvaProducto}}</td>
-            <td>{{this.precioProducto}}</td>
-            <td>{{this.StockProducto}}</td>
-            <td>{{this.DetalleProducto}}</td>
+            <td>{{this.valorUnitario}}</td>
+            <td>{{this.tarifaIva}}</td>
+            <td>{{this.tarifaIce}}</td>
+            <td>{{this.codIrbPnr}}</td>
             <td class="text-end">
                  <a class="btn btn-danger" href="/producto/delete/{{idproducto}}">
                         Eliminar
