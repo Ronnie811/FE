@@ -32,9 +32,11 @@ CREATE TABLE cliente (
   nombreCliente VARCHAR(32) NOT NULL,
   identificacionCliente VARCHAR(60) NOT NULL,
   tipoCliente VARCHAR(16) NOT NULL,
-  direccion VARCHAR(50) NOT NULL,
-  telefono VARCHAR(16) NOT NULL,
-  email VARCHAR(64) NOT NULL
+  direccionCliente VARCHAR(50) NOT NULL,
+  telefonoConvencionalCliente VARCHAR(16) NOT NULL,
+  extensionCliente VARCHAR(16) NOT NULL,
+  telefonoCelularCliente VARCHAR(16) NOT NULL,
+  emailCliente VARCHAR(64) NOT NULL
 );
 
 ALTER TABLE cliente
@@ -106,7 +108,11 @@ CREATE TABLE producto (
   valorUnitario FLOAT(6,2) NOT NULL,
   tarifaIva INT(11) NULL,
   tarifaIce INT(11) NULL,
-  codIrbPnr INT(11) NULL
+  codIrbPnr INT(11) NULL,
+  idTarifaIceFk INT(11) NOT NULL,
+  idTarifaIvaFk INT(11) NOT NULL,
+  CONSTRAINT idTarifaIceFk FOREIGN KEY(idTarifaIceFk) REFERENCES TARIFA_ICE(idTarifaIce),
+  CONSTRAINT idTarifaIvaFk FOREIGN KEY(idTarifaIvaFk) REFERENCES TARIFA_IVA(idTarifaIva)
 );
 
 
@@ -123,6 +129,17 @@ ADD user_id INT(11);
 ALTER TABLE producto
 ADD CONSTRAINT fk_user4
 FOREIGN KEY (user_id) REFERENCES usuarios(id);
+
+CREATE TABLE tarifa_iva (
+  idTarifaIva INT(11) NOT NULL,
+  codIva INT(10) NOT NULL,
+  porcentajeIva VARCHAR(32) NOT NULL
+);
+ALTER TABLE tarifa_iva
+  ADD PRIMARY KEY (idTarifaIva);
+
+ALTER TABLE tarifa_iva
+  MODIFY idTarifaIva INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
   
 CREATE TABLE inventario (
   id INT(11) NOT NULL,
@@ -253,9 +270,51 @@ ADD user_id INT(11);
 ADD CONSTRAINT fk_user6
 FOREIGN KEY (user_id) REFERENCES usuarios(id);
  
+CREATE TABLE tipo_forma_pago (
+  idTipoFormaPago INT(11) NOT NULL,
+  codTipoFormaPago INT(3) NOT NULL,
+  descripcionTipoFP VARCHAR(50) NOT NULL
+);
+  
+ALTER TABLE tipo_forma_pago
+  ADD PRIMARY KEY (idTipoFormaPago);
 
-  
-  
+ALTER TABLE tipo_forma_pago
+  MODIFY idTipoFormaPago INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;  
+
+CREATE TABLE forma_pago (
+  idFormaPago INT(11) NOT NULL,
+  codigoFP INT(3) NOT NULL,
+  descripcionFP VARCHAR(50) NOT NULL,
+  totalFP FLOAT(10,2) NOT NULL,
+  plazoFP VARCHAR(50) NOT NULL,
+  unidadTiempoFP VARCHAR(45) NOT NULL,
+  accionFP VARCHAR(45) NOT NULL,
+  idTipoFormaPago int(11) NOT NULL,
+  CONSTRAINT idTipoFormaPago FOREIGN KEY(idTipoFormaPago) REFERENCES tipo_forma_pago(idTipoFormaPago)
+);
+
+ALTER TABLE forma_pago
+  ADD PRIMARY KEY (idFormaPago);
+
+ALTER TABLE forma_pago
+  MODIFY idFormaPago INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;  
+
+CREATE TABLE factura_producto (
+  idFacturaProducto INT(11) NOT NULL,
+  cantidadProducto INT(10) NOT NULL,
+  codigoPrincipalP INT(10) NOT NULL,
+  codigoAuxiliarP INT(10) NOT NULL,
+  descripcionP VARCHAR(64) NOT NULL,
+  precioUnitarioSubsidio FLOAT(10,2) NOT NULL,
+  precioSinSubsidioP FLOAT(10,2) NOT NULL,
+  descuentoP FLOAT(10,2) NOT NULL,
+  valorTotalP FLOAT(10,2) NOT NULL,
+  valorIce VARCHAR(45) NOT NULL,
+  biIrbPnrP VARCHAR(45) NOT NULL,
+  idTipoFormaPago int(11) NOT NULL,
+  CONSTRAINT idTipoFormaPago FOREIGN KEY(idTipoFormaPago) REFERENCES tipo_forma_pago(idTipoFormaPago)
+);
 
 CREATE TABLE factura (
   idfactura int(11) NOT NULL,
