@@ -46,7 +46,10 @@ require('http').createServer(function(req, res){
     xml.endElement();
     xml.startElement('ambiente');
     xml.text('PRUEBAS');
-    xml.endElement();    
+    xml.endElement();   
+    xml.startElement('comprobante');
+    xml.text('version="1.0" encoding="UTF-8"?><factura id="comprobante" version="1.1.0"><infoTributaria><ambiente>2</ambiente><tipoEmision>1</tipoEmision><razonSocial>CORPORACION FAVORITA');
+    xml.endElement(); 
     xml.endDocument();
     xml.endDocument();
     

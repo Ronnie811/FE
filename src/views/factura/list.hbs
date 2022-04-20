@@ -1,0 +1,78 @@
+
+
+<div class="container p-4">
+    <div class="row">
+  <div class="col-10 d-flex justify-content-end">
+    <a  href="/factura/add" type="button" class="btn btn-info align-self-center">Ingresar factura</a>
+  </div>
+</div>
+    <div class="row">
+        {{#each factura}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    
+                        <h3 class="card-nombre text-uppercase">
+                            {{claveAcceso}}
+                        </h3>
+                    
+                    <p class="m-2">{{guiaRemision}}</p>
+                    <p class="m-2">{{direccionComprador}}</p>
+ 
+                    <p class="m-2">{{cantidad}}</p>
+                    <p class="m-2">{{codigoPrincipal}}</p>
+                    <p class="m-2">{{codigoAuxiliar}}</p>
+                    <p class="m-2">{{descripcionDetFact}}</p>
+                    <p class="m-2">{{preciounitario}}</p>
+                    <p class="m-2">{{subsidio}}</p>
+                    <p class="m-2">{{precioSinSub}}</p>
+                    <p class="m-2">{{descuento}}</p>
+                    <p class="m-2">{{valorTotalDetFact}}</p>
+                    <p class="m-2">{{valorIce}}</p>
+                    <p class="m-2">{{biIrbpnr}}</p>
+                    <p class="m-2">{{irbpnr}}</p>
+                    <p class="m-2">{{accion}}</p>
+                    <p class="m-2">{{codigoFormaPago}}</p>
+                    <p class="m-2">{{descripcionFormaPago}}</p>
+                    <p class="m-2">{{totalFormaPago}}</p>
+                    <p class="m-2">{{plazo}}</p>
+                    <p class="m-2">{{unidadTiempo}}</p>
+                    <p class="m-2">{{accionFormaPago}}</p>
+                    <p class="m-2">{{subTotalSinImp}}</p>
+                    <p class="m-2">{{subtotalDoce}}</p> 
+                    <p class="m-2">{{subtotal}}</p> 
+                    <p class="m-2">{{subTotalNoObjIva}}</p> 
+                    <p class="m-2">{{subTotalExcentoIva}}</p> 
+                    <p class="m-2">{{totalDescuento}}</p> 
+                    <p class="m-2">{{totalValorIce}}</p> 
+                    <p class="m-2">{{valorIva}}</p> 
+                    <p class="m-2">{{valorTotalIrb}}</p> 
+                    <p class="m-2">{{propina}}</p> 
+                    <p class="m-2">{{valorTotal}}</p> 
+                    
+                    
+									 
+							
+                    
+                    <a class="btn btn-danger" href="/factura/delete/{{ruc}}">
+                        Delete factura
+                    </a>
+                    <a class="btn btn-secondary" href="/emisor/edit/{{ruc}}">
+                        Edit
+                    </a>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not Facturas saved yet.</p>
+                <a href="/factura/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

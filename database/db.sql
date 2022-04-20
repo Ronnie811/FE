@@ -58,26 +58,26 @@ ADD user_id INT(11);
   StockProducto INT(15) NOT NULL,
   DetalleProducto VARCHAR(75) NULL
 );*/
-CREATE TABLE TARIFA_IVA (
+CREATE TABLE tarifa_iva (
   idTarifaIva INT(11) NOT NULL,
   codIva INT(32) NOT NULL,
   porcentajeIva VARCHAR(32) NOT NULL
 );
 
-ALTER TABLE TARIFA_IVA
+ALTER TABLE tarifa_iva
   ADD PRIMARY KEY (idTarifaIva);
 
-ALTER TABLE TARIFA_IVA
+ALTER TABLE tarifa_iva
   MODIFY idTarifaIva INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
 
-insert into TARIFA_IVA (codIva,porcentajeIva) values (0,'0%');
-insert into TARIFA_IVA (codIva,porcentajeIva) values (2,'12%');
-insert into TARIFA_IVA (codIva,porcentajeIva) values (3,'14%');
-insert into TARIFA_IVA (codIva,porcentajeIva) values (6,'No objeto de Impuesto');
-insert into TARIFA_IVA (codIva,porcentajeIva) values (7,'Excento de Iva');
+insert into tarifa_iva (codIva,porcentajeIva) values (0,'0%');
+insert into tarifa_iva (codIva,porcentajeIva) values (2,'12%');
+insert into tarifa_iva (codIva,porcentajeIva) values (3,'14%');
+insert into tarifa_iva (codIva,porcentajeIva) values (6,'No objeto de Impuesto');
+insert into tarifa_iva (codIva,porcentajeIva) values (7,'Excento de Iva');
 
 
-CREATE TABLE TARIFA_ICE (
+CREATE TABLE tarifa_ice (
   idTarifaIce INT(11) NOT NULL,
   codIce INT(32) NOT NULL,
   descripcionIce VARCHAR(32) NOT NULL,
@@ -86,18 +86,18 @@ CREATE TABLE TARIFA_ICE (
   tarifaEspecificaMD2 VARCHAR(32) NOT NULL
 );
 
-ALTER TABLE TARIFA_ICE
+ALTER TABLE tarifa_ice
   ADD PRIMARY KEY (idTarifaIce);
 
-ALTER TABLE TARIFA_ICE
+ALTER TABLE tarifa_ice
   MODIFY idTarifaIce INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
 
-insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3101,'ICE Bebidas Energizantes','10%','','');
-insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3041,'ICE Cerveza Industrial Gran Escala','75%','13,2000','');
-insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3073,'ICE Vehículos Motorizados cuyo PVP sea hasta de 20000 USD','5%','','');
-insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3077,'ICE Vehículos Motorizados cuyo PVP superior USD 40.000
+insert into tarifa_ice (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3101,'ICE Bebidas Energizantes','10%','','');
+insert into tarifa_ice (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3041,'ICE Cerveza Industrial Gran Escala','75%','13,2000','');
+insert into tarifa_ice (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3073,'ICE Vehículos Motorizados cuyo PVP sea hasta de 20000 USD','5%','','');
+insert into tarifa_ice (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3077,'ICE Vehículos Motorizados cuyo PVP superior USD 40.000
 hasta 50.000','20%','','');
-insert into TARIFA_ICE (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3073,'ICE Vehículos Motorizados cuyo PVP sea hasta de 20000 USD','5%','','');
+insert into tarifa_ice (codIce,descripcionIce,tarifaAdValorem,tarifaEspecificaED,tarifaEspecificaMD2) values (3073,'ICE Vehículos Motorizados cuyo PVP sea hasta de 20000 USD','5%','','');
 
 CREATE TABLE producto (
   idproducto INT(11) NOT NULL,
@@ -106,13 +106,11 @@ CREATE TABLE producto (
   tipoProducto VARCHAR(32) NOT NULL,
   nombreProducto VARCHAR(64) NOT NULL,
   valorUnitario FLOAT(6,2) NOT NULL,
-  tarifaIva INT(11) NULL,
-  tarifaIce INT(11) NULL,
   codIrbPnr INT(11) NULL,
   idTarifaIceFk INT(11) NOT NULL,
   idTarifaIvaFk INT(11) NOT NULL,
-  CONSTRAINT idTarifaIceFk FOREIGN KEY(idTarifaIceFk) REFERENCES TARIFA_ICE(idTarifaIce),
-  CONSTRAINT idTarifaIvaFk FOREIGN KEY(idTarifaIvaFk) REFERENCES TARIFA_IVA(idTarifaIva)
+  CONSTRAINT idTarifaIceFk FOREIGN KEY(idTarifaIceFk) REFERENCES tarifa_ice(idTarifaIce),
+  CONSTRAINT idTarifaIvaFk FOREIGN KEY(idTarifaIvaFk) REFERENCES tarifa_iva(idTarifaIva)
 );
 
 
@@ -130,17 +128,6 @@ ALTER TABLE producto
 ADD CONSTRAINT fk_user4
 FOREIGN KEY (user_id) REFERENCES usuarios(id);
 
-CREATE TABLE tarifa_iva (
-  idTarifaIva INT(11) NOT NULL,
-  codIva INT(10) NOT NULL,
-  porcentajeIva VARCHAR(32) NOT NULL
-);
-ALTER TABLE tarifa_iva
-  ADD PRIMARY KEY (idTarifaIva);
-
-ALTER TABLE tarifa_iva
-  MODIFY idTarifaIva INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
-  
 CREATE TABLE inventario (
   id INT(11) NOT NULL,
   fecha DATE NOT NULL,
@@ -312,9 +299,51 @@ CREATE TABLE factura_producto (
   valorTotalP FLOAT(10,2) NOT NULL,
   valorIce VARCHAR(45) NOT NULL,
   biIrbPnrP VARCHAR(45) NOT NULL,
-  idTipoFormaPago int(11) NOT NULL,
-  CONSTRAINT idTipoFormaPago FOREIGN KEY(idTipoFormaPago) REFERENCES tipo_forma_pago(idTipoFormaPago)
+  irbPnrP VARCHAR(45) NOT NULL,
+  AccionP VARCHAR(45) NOT NULL,
+  idFacturaFK int(11) NOT NULL,
+  idProductoFK int(11) NOT NULL,
+  CONSTRAINT idFacturaFK FOREIGN KEY(idFacturaFK) REFERENCES producto(idproducto),
+  CONSTRAINT idProductoFK FOREIGN KEY(idProductoFK) REFERENCES factura(idfactura)
 );
+
+ALTER TABLE factura_producto
+  ADD PRIMARY KEY (idFacturaProducto);
+
+ALTER TABLE factura_producto
+  MODIFY idFacturaProducto INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;  
+
+CREATE TABLE emisor (
+  idEmisor int(11) NOT NULL,
+  ruc int(13) NOT NULL,
+  nombreEmisor varchar(300) NOT NULL,
+  nombreComercial varchar(300) NOT NULL,
+  dirMatriz varchar(300) NOT NULL,
+  dirEstablecimiento varchar(300) NOT NULL,
+  codEstablecimiento int(15) NOT NULL,
+  codPuntoEmision int(15) NOT NULL,
+  contribuyenteEspecial int(11) NOT NULL,
+  obligadoLlevarCont int(1) NOT NULL,
+  contRegMicro int(1) NOT NULL,
+  agenteRetencion varchar(128) NOT NULL,
+  logo varchar(64) NOT NULL,
+  tiempoEsperaAut int(32) NOT NULL,
+  tipoAmbiente varchar(32) NOT NULL,
+  token varchar(64) NOT NULL
+); 
+
+ALTER TABLE emisor
+  ADD PRIMARY KEY (idEmisor);
+
+ALTER TABLE emisor
+  MODIFY idEmisor INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;  
+
+    ALTER TABLE emisor
+ADD user_id INT(11);
+
+  ALTER TABLE emisor
+ADD CONSTRAINT fk_user8
+FOREIGN KEY (user_id) REFERENCES usuarios(id);
 
 CREATE TABLE factura (
   idfactura int(11) NOT NULL,
@@ -355,3 +384,68 @@ ALTER TABLE factura
   ALTER TABLE factura
 ADD CONSTRAINT fk_user7
 FOREIGN KEY (user_id) REFERENCES usuarios(id);
+
+CREATE TABLE calidad (
+  id INT(11) NOT NULL,
+  descripcion VARCHAR(16) NOT NULL
+);
+
+ALTER TABLE calidad
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE calidad
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+
+
+
+
+
+
+
+
+
+
+
+  CREATE TABLE factura (
+  idFactura int(11) NOT NULL,
+  claveAcceso VARCHAR(64) NOT NULL,
+  guiaRemision VARCHAR(64) NOT NULL,
+  direccionComprador VARCHAR(64) NOT NULL,
+  cantidad VARCHAR(64) NOT NULL,
+  codigoPrincipal VARCHAR(64) NOT NULL,
+  codigoAuxiliar VARCHAR(64) NOT NULL,
+  descripcionDetFact VARCHAR(64) NOT NULL,
+  preciounitario VARCHAR(64) NOT NULL,
+  subsidio VARCHAR(64) NOT NULL,
+  precioSinSub VARCHAR(64) NOT NULL,
+  descuento VARCHAR(64) NOT NULL,
+  valorTotalDetFact VARCHAR(64) NOT NULL,
+  valorIce VARCHAR(64) NOT NULL,
+  biIrbpnr VARCHAR(64) NOT NULL,
+  irbpnr VARCHAR(64) NOT NULL,
+  accion VARCHAR(64) NOT NULL,
+  codigoFormaPago VARCHAR(64) NOT NULL,
+  descripcionFormaPago VARCHAR(64) NOT NULL,
+  totalFormaPago VARCHAR(64) NOT NULL,
+  plazo VARCHAR(64) NOT NULL,
+  unidadTiempo VARCHAR(64) NOT NULL,
+  accionFormaPago VARCHAR(64) NOT NULL,
+  subTotalSinImp VARCHAR(64) NOT NULL,
+  subtotalDoce VARCHAR(64) NOT NULL,
+  subtotal VARCHAR(64) NOT NULL,
+  subTotalNoObjIva VARCHAR(64) NOT NULL,
+  subTotalExcentoIva VARCHAR(64) NOT NULL,
+  totalDescuento VARCHAR(64) NOT NULL,
+  totalValorIce VARCHAR(64) NOT NULL,
+  valorIva VARCHAR(64) NOT NULL,
+  valorTotalIrb VARCHAR(64) NOT NULL,
+  propina VARCHAR(64) NOT NULL,
+  valorTotal VARCHAR(64) NOT NULL
+  ); 
+
+ALTER TABLE factura
+  ADD PRIMARY KEY (idFactura);
+
+ALTER TABLE factura
+  MODIFY idFactura INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;  

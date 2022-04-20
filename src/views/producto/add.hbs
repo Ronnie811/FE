@@ -73,18 +73,34 @@
         <label for="floatingInput">codigo IrbPnr</label>
       </div>
     </div> 
-    <div class="col-4">
+    <!--div class="col-4">
       <div class="form-floating mb-3">
         <input name="tarifaIce" type="text" class="form-control" id="floatingInput">
-        <label for="floatingInput">codigo tarifa IVA</label>
+        <label for="floatingInput">codigo tarifa ICE</label>
       </div>
-    </div> 
-    <div class="col-4">
+    </div--> 
+    <!--div class="col-4">
       <div class="form-floating mb-3">
         <input name="tarifaIva" type="text" class="form-control" id="floatingInput">
         <label for="floatingInput">codigo tarifa iva</label>
       </div>
-    </div> 
+    </div-->
+    <div class="col-4">
+      <label for="floatingInput">Código tarifa ICE</label>
+      <select class="form-control" name="idTarifaIceFk">
+                              {{#each tarifaIce}}
+                                  <option value="{{this.codIce}}" >{{this.codIce}}</option>
+                              {{/each}}
+                          </select>  
+    </div>                         
+    <div class="col-4">
+      <label for="floatingInput">Código tarifa IVA</label>
+      <select class="form-control" name="idTarifaIvaFk">
+                              {{#each tarifaIva}}
+                                  <option value="{{this.codIva}}" >{{this.codIva}}</option>
+                              {{/each}}
+                          </select>  
+    </div>                         
     <!--select class="form-control" name="porcentajeIva">
                             {{#each TARIFA_IVA}}
                                 <option value="{{this.porcentajeIva}}" >{{this.porcentajeIva}}</option>

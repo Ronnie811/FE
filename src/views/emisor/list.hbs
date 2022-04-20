@@ -1,0 +1,47 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each emisor}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    
+                        <h3 class="card-nombre text-uppercase">
+                            {{nombreEmisor}}
+                        </h3>
+                    
+                    <p class="m-2">{{ruc}}</p>
+                    <p class="m-2">{{nombreComercial}}</p>
+                    <p class="m-2">{{dirMatriz}}</p>
+                    <p class="m-2">{{dirEstablecimiento}}</p>
+                    <p class="m-2">{{codEstablecimiento}}</p>
+                    <p class="m-2">{{codPuntoEmision}}</p>
+                    <p class="m-2">{{contribuyenteEspecial}}</p>
+                    <p class="m-2">{{obligadoLlevarCont}}</p>
+                    <p class="m-2">{{contRegMicro}}</p>
+                    <p class="m-2">{{agenteRetencion}}</p>
+                    <p class="m-2">{{logo}}</p>
+                    <p class="m-2">{{tiempoEsperaAut}}</p>
+                    <p class="m-2">{{tipoAmbiente}}</p>
+                    <p class="m-2">{{token}}</p>
+									 
+							
+                    
+                    <a class="btn btn-danger" href="/emisor/delete/{{ruc}}">
+                        Delete proveedor
+                    </a>
+                    <a class="btn btn-secondary" href="/emisor/edit/{{ruc}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not cliente saved yet.</p>
+                <a href="/emisor/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
